@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Novidades de Doces</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+                body {
+            font-family: Arial, sans-serif;
+            padding-top: 100px;
+        }
+        .carousel-item img,
+        .card img {
+            width: 800px;
+            height: 400px;
+            object-fit: cover;
+        }
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .card p {
+            margin-bottom: 10px;
+        }
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .carousel-inner {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cupcake Gourmet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="novidades">Novidades</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="clientes">Clientes</a></li>
+                            <li><a class="dropdown-item" href="produtos">Produtos</a></li>
+                            <li><a class="dropdown-item" href="checkout">Carrinho</a></li>
+                            <li><a class="dropdown-item" href="cadastrocliente">Cadastro cliente</a></li>
+                            <li><a class="dropdown-item" href="cadastroproduto">Cadastro produtos</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Carrossel e Cards -->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/static/cup1.jpg" alt="Imagem de Bolos" width="666" height="444">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Cupcakes</h2>
+                    <p>Novos sabores e coberturas. Experimente nossas novidades.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/static/donuts1.jpg" alt="Imagem de Bolos" width="666" height="444">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Donuts</h2>
+                    <p>Ampliamos a nossa variedade de donuts. Não deixe de experimentar.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/static/cake1.jpg" alt="Imagem de Bolos" width="666" height="444">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Bolos</h2>
+                    <p>Temos novos sabores e coberturas para você se deliciar.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

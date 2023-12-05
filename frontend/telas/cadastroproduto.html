@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro de Produto</title>
+    <!-- Adicionando os estilos do Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Espaçamento para melhor visualização */
+        body {
+            padding-top: 60px;
+        }
+    </style>
+</head>
+<body>
+     <!-- Barra de Navegação -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cupcake Gourmet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="novidades">Novidades</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="clientes">Clientes</a></li>
+                            <li><a class="dropdown-item" href="produtos">Produtos</a></li>
+                            <li><a class="dropdown-item" href="checkout">Carrinho</a></li>
+                            <li><a class="dropdown-item" href="cadastrocliente">Cadastro cliente</a></li>
+                            <li><a class="dropdown-item" href="cadastroproduto">Cadastro produtos</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Barra de Navegação -->
+
+
+    <div class="container mt-5">
+
+        <h1 class="mt-4 mb-4">Cadastro de Produto</h1>
+
+        {% if mensagem %}
+            {% if 'sucesso' in mensagem %}
+                <div class="alert alert-success" role="alert">
+                    {{ mensagem }}
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    {{ mensagem }}
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <form method="post" action="/cadastroproduto" enctype="multipart/form-data" id="uploadForm">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" name="nome">
+            </div>
+
+            <div class="form-group">
+                <label for="especificacao">Especificação:</label>
+                <input type="text" class="form-control" name="especificacao">
+            </div>
+
+            <div class="form-group">
+                <label for="valor">Valor:</label>
+                <input type="text" class="form-control" name="valor">
+            </div>
+
+            <div class="form-group">
+                <label for="imagem">Imagem:</label>
+                <input type="file" class="form-control-file" name="imagem">
+            </div>
+
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="text" class="form-control" name="quantidade">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+        </form>
+    </div>
+
+    <!-- Importando primeiro o jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Depois, o Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     
+    <script>
+        $(document).ready(function(){
+            $('#uploadForm').submit(function(e){
+                e.preventDefault();
+                var formData = new FormData($(this)[0]);
+
+                $.ajax({
+                    url: '/cadastroproduto',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data){
+                        // Verifica se a resposta contém a mensagem
+                        if (data && data.mensagem) {
+                            if (data.mensagem.includes('sucesso')) {
+                                $('.alert').removeClass('alert-danger').addClass('alert-success').text(data.mensagem).show();
+                            } else {
+                                $('.alert').removeClass('alert-success').addClass('alert-danger').text(data.mensagem).show();
+                            }
+                        }
+                    },
+                    error: function(xhr, status, error){
+                        // Tratamento de erro, se necessário
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

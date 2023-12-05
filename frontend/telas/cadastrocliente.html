@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Cadastro de Clientes</title>
+    <!-- Adicionando os estilos do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Adiciona margem ao dropdown-menu */
+        .dropdown-menu {
+            margin-right: 10px; /* Você pode ajustar essa margem conforme necessário */
+        }
+    </style>
+</head>
+<body>
+     <!-- Barra de Navegação -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cupcake Gourmet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="novidades">Novidades</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="clientes">Clientes</a></li>
+                            <li><a class="dropdown-item" href="produtos">Produtos</a></li>
+                            <li><a class="dropdown-item" href="checkout">Carrinho</a></li>
+                            <li><a class="dropdown-item" href="cadastrocliente">Cadastro cliente</a></li>
+                            <li><a class="dropdown-item" href="cadastroproduto">Cadastro produtos</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br/>
+    <br/>
+
+    <!-- Barra de Navegação -->
+    <div class="container mt-5">
+        <h1 class="mt-4 mb-4">Cadastro de Clientes</h1>
+        <form method="post" action="/cadastrocliente">
+        <form method="post" action="/cadastroproduto">
+            {% if mensagem %}
+        {% if 'sucesso' in mensagem %}
+            <div class="alert alert-success" role="alert">
+                {{ mensagem }}
+            </div>
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                {{ mensagem }}
+            </div>
+        {% endif %}
+    {% endif %}
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="text" class="form-control" name="telefone">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="cep">CEP:</label>
+                    <input type="text" class="form-control" name="cep" id="cep" onchange="buscarCep()">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" class="form-control" name="cidade" id="cidade">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input type="text" class="form-control" name="endereco" id="endereco">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="numero_casa">Número Casa:</label>
+                    <input type="text" class="form-control" name="numero_casa">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="complemento">Complemento:</label>
+                    <input type="text" class="form-control" name="complemento">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
+        </form>
+    </div>
+    {% if not mensagem %}
+        <form method="post" action="/cadastrocliente">
+        </form>
+    {% endif %}
+    <!-- Importando o JavaScript do Bootstrap (opcional, mas necessário para alguns recursos) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function buscarCep() {
+            const cep = document.getElementById('cep').value;
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('cidade').value = data.localidade;
+                    document.getElementById('endereco').value = data.logradouro;
+                    // Você pode adicionar outros campos do endereço conforme a necessidade e os dados retornados pela API
+                })
+                .catch(error => console.log('Erro ao buscar CEP:', error));
+        }
+        
+    </script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+ </body>
+</html>
